@@ -6,6 +6,7 @@
 import { Text as DefaultText, useColorScheme, View as DefaultView } from 'react-native';
 
 import Colors from '../constants/Colors';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 type ThemeProps = {
   lightColor?: string;
