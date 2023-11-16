@@ -72,7 +72,7 @@ export const Counter = ({ path }: { path: string }) => {
 	const selectedName = (index: number) => {
 		return(<View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
 			<TouchableOpacity
-				style={selectedState !== state.length - 1 ? {alignSelf: 'center' } : {alignSelf: 'center', opacity: 0.5}}
+				style={selectedState !== state.length - 1 ? {alignSelf: 'center'} : {alignSelf: 'center', opacity: 0.5}}
 				onPress={() => {
 					setSelectedState(prev => prev - 1);
 				}}
