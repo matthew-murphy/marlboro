@@ -19,6 +19,13 @@ export const Counter = ({ path }: { path: string }) => {
 
 	const [selectedState, setSelectedState] = useState<number>(0);
 
+	const deleteSelectedCounter = (index: number) => {
+		setState(prev => prev.filter((_item, i) => i !== index));
+		if (index === selectedState && selectedState !== 0) {
+			setSelectedState(prev => prev - 1);
+		}
+	}
+
 	const handleIncrement = (index: number) => {
 		setState(prev => {
 			const newState = [...prev];
@@ -113,11 +120,14 @@ export const Counter = ({ path }: { path: string }) => {
 
 	return (
 		<View>
-			{state.map((item: Props, index: number) => {
+			{(state).map((item: Props, index: number) => {
 				if (index === selectedState) {
 					return(
 						<View key={index}>
-							<TouchableOpacity activeOpacity={.5} onPress={addNewCounter}><Text style={{ textDecorationLine: 'underline', color: Colors.light.tint}}>Add new</Text></TouchableOpacity>
+							<View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+								<TouchableOpacity activeOpacity={.5} onPress={addNewCounter}><Text style={{ textDecorationLine: 'underline', color: Colors.light.tint}}>Add new</Text></TouchableOpacity>
+								<TouchableOpacity disabled={state.length === 1} activeOpacity={.5} onPress={() => deleteSelectedCounter(index)}><AntDesign name="delete" size={20} color={'red'} /></TouchableOpacity>
+							</View>
 							{selectedName(index)}
 							<Text style={{ fontSize: 60}}>{item && item.count}</Text>
 							{selectedCounter(index)}
